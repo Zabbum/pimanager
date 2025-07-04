@@ -1,0 +1,56 @@
+name: build-with-frontend.yml
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout backend
+        uses: actions/checkout@v4
+
+      - name: Checkout frontend
+        uses: actions/checkout@v4
+        with:
+          repository: 'Zabbum/pimanager-client'
+          path: frontend
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build angular frontend
+        working-directory: frontend
+        run: ng build --configuration production
+
+      - name: Copy frontend build to backend
+        run: cp -r frontend/dist/*/browser/* src/main/resources/static/
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          architecture: x64
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build WAR
+        run: ./gradlew clean war
+
+      - name: Release on GitHub
+        uses: softprops/action-gh-release@v2.3.2
+        with:
+          files: build]/libs/*.war
+

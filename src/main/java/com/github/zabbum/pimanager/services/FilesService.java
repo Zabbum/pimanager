@@ -40,4 +40,14 @@ public class FilesService {
       throw new RuntimeException("Failed to read files from path: " + path, e);
     }
   }
+
+  /**
+   * Relativize provided path from public dir path.
+   *
+   * @param path Path to relativize.
+   * @return Relativized path.
+   */
+  public String relativize(Path path) {
+    return "/" + getPublicDir().relativize(path);
+  }
 }

@@ -1,6 +1,5 @@
 package com.github.zabbum.pimanager.model;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -9,16 +8,16 @@ import lombok.Data;
 @Data
 public class FilesDirs {
   private String currentDir;
-  private List<Path> files;
-  private List<Path> dirs;
+  private List<String> files;
+  private List<String> dirs;
 
   /**
    * Constructor with current path.
    *
    * @param currentDirRelative Path of current dir.
    */
-  public FilesDirs(Path currentDirRelative) {
-    this.currentDir = "/" + currentDirRelative.toString();
+  public FilesDirs(String currentDirRelative) {
+    this.currentDir = currentDirRelative;
     this.files = new ArrayList<>();
     this.dirs = new ArrayList<>();
   }
