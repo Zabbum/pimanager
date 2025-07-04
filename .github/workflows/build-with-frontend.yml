@@ -58,7 +58,7 @@ jobs:
       - name: Release on GitHub
         uses: softprops/action-gh-release@v2.3.2
         with:
-          files: build]/libs/*.war
+          files: build/libs/*.war
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
