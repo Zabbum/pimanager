@@ -30,5 +30,5 @@ jobs:
       - name: Super-linter
         uses: super-linter/super-linter/slim@v7.4.0
         env:
-          JAVA_FILE_NAME: checkstyle.xml
+          JAVA_FILE_NAME: /home/runner/work/pimanager/pimanager/checkstyle.xml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
