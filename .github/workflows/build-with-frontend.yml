@@ -34,7 +34,7 @@ jobs:
         run: ng build --configuration production
 
       - name: Copy frontend build to backend
-        run: cp -r frontend/dist/*/browser/* src/main/resources/static/
+        run: cp -r frontend/dist/*/browser/* pimanager/src/main/resources/static/
 
       - name: Setup Java
         uses: actions/setup-java@v4
