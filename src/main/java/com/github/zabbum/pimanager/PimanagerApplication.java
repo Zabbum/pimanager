@@ -7,7 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PimanagerApplication {
 
-
+  /**
+   * Main method for execution.
+   *
+   * @param args CLI args.
+   */
   public static void main(String[] args) {
     SpringApplication.run(PimanagerApplication.class, args);
   }
