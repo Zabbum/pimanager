@@ -33,6 +33,9 @@ jobs:
         working-directory: frontend
         run: ng build --configuration production
 
+      - name: DEBUG - Show tree
+        run: tree
+
       - name: Copy frontend build to backend
         run: cp -r frontend/dist/*/browser/* pimanager/src/main/resources/static/
 
@@ -45,6 +48,10 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Checkstyle check
+        run: ./gradlew check
+        continue-on-error: true
 
       - name: Build WAR
         run: ./gradlew clean war
