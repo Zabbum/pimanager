@@ -20,6 +20,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: DEBUG - List directory
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Contents:"
+          ls -alh
+
       - name: Super-linter
         uses: super-linter/super-linter/slim@v7.4.0
         env:
